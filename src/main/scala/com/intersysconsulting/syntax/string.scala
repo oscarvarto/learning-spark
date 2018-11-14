@@ -1,14 +1,12 @@
 package com.intersysconsulting.syntax
 
-import _root_.io.estatico.newtype.macros.newtype
 import scalaz.std.either.eitherInstance
 import scalaz.syntax.bifunctor.ToBifunctorOps
 import scalaz.syntax.std.string.ToStringOpsFromString
 
 object string {
 
-  @newtype
-  case class Error(msg: String)
+  final case class Error(msg: String) extends AnyVal
 
   // See note in https://leanpub.com/fpmortals/read#leanpub-auto-functionality
   // This more verbose form of the "extension syntax" avoids intermediate class allocation

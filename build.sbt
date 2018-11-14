@@ -43,19 +43,29 @@ val stdOptions = Seq(
   "-Ywarn-nullary-unit",               // Warn when nullary methods return Unit.
   "-Ywarn-numeric-widen",              // Warn when numerics are widened.
   "-Ywarn-unused:implicits",           // Warn if an implicit parameter is unused.
-  //"-Ywarn-unused:imports",             // Warn if an import selector is not referenced.
+  //"-Ywarn-unused:imports",           // Warn if an import selector is not referenced.
   "-Ywarn-unused:locals",              // Warn if a local definition is unused.
   "-Ywarn-unused:params",              // Warn if a value parameter is unused.
   "-Ywarn-unused:patvars",             // Warn if a variable bound in a pattern is unused.
   "-Ywarn-unused:privates",            // Warn if a private member is unused.
-  "-Ywarn-value-discard"               // Warn when non-Unit expression results are unused.
+  "-Ywarn-value-discard",              // Warn when non-Unit expression results are unused.
+)
+
+// Typelevel Scala 4 flags
+val typelevelOptions = Seq(
+  "-Yinduction-heuristics",            // speeds up the compilation of inductive implicit resolution
+  "-Ykind-polymorphism",               // type and method definitions with type parameters of arbitrary kinds
+  "-Yliteral-types",                   // literals can appear in type position
+  "-Xstrict-patmat-analysis",          // more accurate reporting of failures of match exhaustivity
+  "-Xlint:strict-unsealed-patmat"      // warn on inexhaustive matches against unsealed traits
 )
 
 lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
       organization := "com.intersysconsulting",
-      scalaVersion := "2.12.7",
+      scalaOrganization := "org.typelevel",
+      scalaVersion := "2.12.4-bin-typelevel-4",
       version := "0.1.1"
     )),
     name := "learning-spark",
@@ -67,7 +77,7 @@ lazy val root = (project in file(".")).
       shapeless,
       refined,
       refinedScalaz,
-      newtype,
+      singletonOps,
       spire,
       avro4s,
       sparkDaria,
@@ -75,10 +85,9 @@ lazy val root = (project in file(".")).
       sparkFastTests % Test,
       scalaTest % Test
     ).map(_ withJavadoc()),
-    addCompilerPlugin("org.scalamacros"       % "paradise"                % "2.1.1"  cross CrossVersion.full),
     addCompilerPlugin("org.spire-math"        %% "kind-projector"         % "0.9.8"),
     addCompilerPlugin("com.olegpy"            %% "better-monadic-for"     % "0.2.4"),
-    scalacOptions := stdOptions,
+    scalacOptions := stdOptions ++ typelevelOptions,
     // test suite settings
     fork in Test := true,
     javaOptions ++= Seq("-Xms512M", "-Xmx2048M", "-XX:MaxPermSize=2048M", "-XX:+CMSClassUnloadingEnabled"),
