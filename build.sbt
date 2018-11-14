@@ -67,6 +67,7 @@ lazy val root = (project in file(".")).
       shapeless,
       refined,
       refinedScalaz,
+      newtype,
       spire,
       avro4s,
       sparkDaria,
