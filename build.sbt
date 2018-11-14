@@ -11,8 +11,8 @@ sparkVersion := "2.4.0"
 sparkComponents ++= Seq("sql")
 
 libraryDependencies ++= Seq(
-  "com.github.mrpowers" % "spark-daria" % "v0.26.0",
-  "com.github.mrpowers" % "spark-fast-tests" % "v0.16.0" % "test",
+  "mrpowers" %% "spark-daria" % "0.26.1",
+  "mrpowers" %% "spark-fast-tests" % "0.17.1" % "test",
   "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 )
 
