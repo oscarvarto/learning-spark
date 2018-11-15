@@ -6,7 +6,7 @@ import scalaz.syntax.std.string.ToStringOpsFromString
 
 object string {
 
-  final case class Error(msg: String) extends AnyVal
+  final case class ErrorMsg(value: String) extends AnyVal
 
   // See note in https://leanpub.com/fpmortals/read#leanpub-auto-functionality
   // This more verbose form of the "extension syntax" avoids intermediate class allocation
@@ -31,7 +31,9 @@ object string {
         s.chars().allMatch(Character.isWhitespace(_))
     }
 
-    def intOrError: Either[Error, Int] =
-      s.parseInt.toEither.leftMap(nfe => Error(nfe.getMessage()))
+    def intOrError: Either[ErrorMsg, Int] =
+      s.parseInt.toEither.leftMap(nfe => ErrorMsg(nfe.getMessage()))
+
+    def error: ErrorMsg = ErrorMsg(s)
   }
 }
