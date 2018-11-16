@@ -1,10 +1,8 @@
 package com.intersysconsulting.syntax
 
-import string._
+import com.intersysconsulting.syntax.string._
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import scalaz.zio._
-import scalaz.syntax.show._
-import scalaz.std.anyVal.booleanInstance
 
 object sparksession {
 
@@ -14,10 +12,10 @@ object sparksession {
     private def unsafeReadCsv(path: String,
                               header: Boolean,
                               inferSchema: Boolean): DataFrame =
-      ss.read.format("csv")
-        .option("header", header.shows)
-        .option("inferSchema", inferSchema.shows)
-        .load(path)
+      ss.read
+        .option("header", header)
+        .option("inferSchema", inferSchema)
+        .csv(path)
 
     def readCsv(path: String,
                 header: Boolean = true,
