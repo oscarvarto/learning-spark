@@ -83,6 +83,7 @@ lazy val root = (project in file(".")).
       sparkDaria,
       scalaCheck % Test,
       sparkFastTests % Test,
+      sqliteJdbc % Test,
       scalaTest % Test
     ).map(_ withJavadoc()),
     addCompilerPlugin("org.spire-math"        %% "kind-projector"         % "0.9.8"),

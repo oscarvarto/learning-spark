@@ -4,6 +4,7 @@ object Dependencies {
   lazy val sparkDaria     = "mrpowers"              %% "spark-daria"        % "0.26.1"
   lazy val sparkFastTests = "mrpowers"              %% "spark-fast-tests"   % "0.17.1"
   lazy val scalaTest      = "org.scalatest"         %% "scalatest"          % "3.2.0-SNAP10"
+  lazy val sqliteJdbc     = "org.xerial"            %  "sqlite-jdbc"        % "3.25.2"
 
   lazy val scalazCore     = "org.scalaz"            %% "scalaz-core"        % "7.2.27"
   lazy val scalazZio      = "org.scalaz"            %% "scalaz-zio"         % "0.3.2"
