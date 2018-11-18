@@ -24,9 +24,10 @@ class ReadSqliteSpec extends FunSpec
         .format("jdbc")
         .option("url", url)
         .option("dbtable", pushdownQuery)
-        .option("driver", driver).load()
+        .option("driver", driver)
+        .load()
 
-    dbDataFrame.count() shouldBe 17L
+    dbDataFrame.count shouldBe 17L
     dbDataFrame.collect.flatMap(_.toSeq) shouldBe Vector(
       "The Power Of Equality",
       "If You Have To Ask",

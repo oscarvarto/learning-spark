@@ -1,6 +1,7 @@
 import Dependencies._
 
 resolvers += "jitpack" at "https://jitpack.io"
+resolvers += Resolver.bintrayRepo("ovotech", "maven")
 
 val stdOptions = Seq(
   "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
@@ -81,6 +82,11 @@ lazy val root = (project in file(".")).
       spire,
       avro4s,
       sparkDaria,
+      fs2Core,
+      catsCore,
+      catsFree,
+      catsEffect,
+      fs2Kafka,
       scalaCheck % Test,
       sparkFastTests % Test,
       sqliteJdbc % Test,
