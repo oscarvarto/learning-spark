@@ -61,6 +61,16 @@ val typelevelOptions = Seq(
   "-Xlint:strict-unsealed-patmat"      // warn on inexhaustive matches against unsealed traits
 )
 
+// Determine OS version of JavaFX binaries
+lazy val osName = System.getProperty("os.name") match {
+  case n if n.startsWith("Linux")   => "linux"
+  case n if n.startsWith("Mac")     => "mac"
+  case n if n.startsWith("Windows") => "win"
+  case _ => throw new Exception("Unknown platform!")
+}
+
+lazy val javaFXModules = Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
+
 lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
@@ -88,11 +98,14 @@ lazy val root = (project in file(".")).
       catsCore,
       catsFree,
       catsEffect,
+      vegas,
       scalaCheck % Test,
       sparkFastTests % Test,
       sqliteJdbc % Test,
       scalaTest % Test
-    ).map(_ withJavadoc()),
+    ).map(_ withJavadoc()) ++ javaFXModules.map( m =>
+      "org.openjfx" % s"javafx-$m" % "11" classifier osName
+    ),
     addCompilerPlugin("org.spire-math"        %% "kind-projector"         % "0.9.8"),
     addCompilerPlugin("com.olegpy"            %% "better-monadic-for"     % "0.2.4"),
     scalacOptions := stdOptions ++ typelevelOptions,
@@ -102,7 +115,8 @@ lazy val root = (project in file(".")).
     // Show runtime of tests
     testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD"),
     // JAR file settings
-    assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false)
+    assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false),
     // Add the JAR file naming conventions described here: https://github.com/MrPowers/spark-style-guide#jar-files
     // You can add the JAR file naming conventions by running the shell script
+    updateOptions := updateOptions.value.withLatestSnapshots(false)
   )

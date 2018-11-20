@@ -25,11 +25,13 @@ object Dependencies {
   lazy val fs2ReactiveStreams   = "co.fs2"                %% "fs2-reactive-streams"   % "1.0.0"
   // optional experimental library
   lazy val fs2Experimental      = "co.fs2"                %% "fs2-experimental"       % "1.0.0"
-  
+
   lazy val circeFs2             = "io.circe"              %% "circe-fs2"              % "0.10.0"
 
   lazy val catsCore             = "org.typelevel"         %% "cats-core"              % "1.4.0"
   lazy val catsFree             = "org.typelevel"         %% "cats-free"              % "1.4.0"
   lazy val catsEffect           = "org.typelevel"         %% "cats-effect"            % "1.1.0-M1"
   lazy val fs2Kafka             = "com.ovoenergy"         %% "fs2-kafka"              % "0.16.4"
+
+  lazy val vegas                = "org.vegas-viz"         %% "vegas"                  % "0.3.12-SNAPSHOT"
 }
