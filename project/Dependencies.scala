@@ -1,8 +1,8 @@
 import sbt._
 
 object Dependencies {
-  lazy val sparkDaria           = "mrpowers"              %% "spark-daria"            % "0.26.1"
-  lazy val sparkFastTests       = "mrpowers"              %% "spark-fast-tests"       % "0.17.1"
+  lazy val sparkDaria           = "com.github.mrpowers"   %% "spark-daria"            % "0.26.1"
+  lazy val sparkFastTests       = "com.github.mrpowers"   %% "spark-fast-tests"       % "0.17.1"
   lazy val scalaTest            = "org.scalatest"         %% "scalatest"              % "3.2.0-SNAP10"
   lazy val sqliteJdbc           = "org.xerial"            %  "sqlite-jdbc"            % "3.25.2"
 
@@ -25,6 +25,8 @@ object Dependencies {
   lazy val fs2ReactiveStreams   = "co.fs2"                %% "fs2-reactive-streams"   % "1.0.0"
   // optional experimental library
   lazy val fs2Experimental      = "co.fs2"                %% "fs2-experimental"       % "1.0.0"
+  
+  lazy val circeFs2             = "io.circe"              %% "circe-fs2"              % "0.10.0"
 
   lazy val catsCore             = "org.typelevel"         %% "cats-core"              % "1.4.0"
   lazy val catsFree             = "org.typelevel"         %% "cats-free"              % "1.4.0"
